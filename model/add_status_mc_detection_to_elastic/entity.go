@@ -1,7 +1,9 @@
-package consumer_status_mc_detection
+package add_status_mc_detection_to_elastic
 
-// json di struct ini disesuaikan dengan key payload rmq
-type RmqConsumerStatusMcDetection struct {
+// ini entity data yg akan dikirim ke elastic
+
+type ElasticStatusMcDetection struct {
+	ID            string `json:"id"`
 	TidID         *int   `json:"tid_id"`
 	DateTime      string `json:"date_time"`
 	StatusSignal  string `json:"status_signal"`

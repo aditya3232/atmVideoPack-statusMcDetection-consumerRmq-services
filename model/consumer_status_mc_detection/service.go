@@ -1,7 +1,7 @@
 package consumer_status_mc_detection
 
 type Service interface {
-	ConsumerQueueStatusMcDetection() (StatusMcDetection, error)
+	ConsumerQueueStatusMcDetection() (RmqConsumerStatusMcDetection, error)
 }
 
 type service struct {
@@ -13,14 +13,14 @@ func NewService(repository Repository) *service {
 }
 
 // consume and save to db
-func (s *service) ConsumerQueueStatusMcDetection() (StatusMcDetection, error) {
+func (s *service) ConsumerQueueStatusMcDetection() (RmqConsumerStatusMcDetection, error) {
 
 	// consume queue
-	statusMcDetection, err := s.statusMcDetectionRepository.ConsumerQueueStatusMcDetection()
+	newRmqConsumerStatusMcDetection, err := s.statusMcDetectionRepository.ConsumerQueueStatusMcDetection()
 	if err != nil {
-		return StatusMcDetection{}, err
+		return newRmqConsumerStatusMcDetection, err
 	}
 
-	return statusMcDetection, nil
+	return newRmqConsumerStatusMcDetection, nil
 
 }

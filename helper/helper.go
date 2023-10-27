@@ -16,7 +16,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/aditya3232/gatewatchApp-services.git/log"
+	log_function "github.com/aditya3232/atmVideoPack-statusMcDetection-consumerRmq-services.git/log"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"gorm.io/gorm"
@@ -409,7 +409,7 @@ func GetMimeType(file string) string {
 func RemoveFile(file string) {
 	err := os.Remove(file)
 	if err != nil {
-		log.Error(err)
+		log_function.Error(err)
 	}
 }
 
@@ -433,6 +433,52 @@ func CompressImageBytes(imageBytes []byte) ([]byte, error) {
 
 	// return buffer as bytes
 	return buf.Bytes(), nil
+}
+
+// is image helper
+func IsImage(file *multipart.FileHeader) error {
+	// open file
+	src, err := file.Open()
+	if err != nil {
+		return err
+	}
+	defer src.Close()
+
+	// decode image from file
+	_, _, err = image.Decode(src)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// convert image to jpg withoout reducce size
+func ConvertImageToJpg(file *multipart.FileHeader) error {
+	// open file
+	src, err := file.Open()
+	if err != nil {
+		return err
+	}
+	defer src.Close()
+
+	// decode image from file
+	img, _, err := image.Decode(src)
+	if err != nil {
+		return err
+	}
+
+	// create buffer
+	buf := new(bytes.Buffer)
+
+	// encode image to buffer
+	err = jpeg.Encode(buf, img, &jpeg.Options{})
+	if err != nil {
+		return err
+	}
+
+	// return buffer as bytes
+	return nil
 }
 
 // convert file from multipart form data to base64, and compress to
