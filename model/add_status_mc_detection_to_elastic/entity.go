@@ -4,7 +4,7 @@ package add_status_mc_detection_to_elastic
 
 type ElasticStatusMcDetection struct {
 	ID            string `json:"id"`
-	TidID         *int   `json:"tid_id"`
+	Tid           string `json:"tid"`
 	DateTime      string `json:"date_time"`
 	StatusSignal  string `json:"status_signal"`
 	StatusStorage string `json:"status_storage"`

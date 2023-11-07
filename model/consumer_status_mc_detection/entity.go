@@ -2,7 +2,7 @@ package consumer_status_mc_detection
 
 // json di struct ini disesuaikan dengan key payload rmq
 type RmqConsumerStatusMcDetection struct {
-	TidID         *int   `json:"tid_id"`
+	Tid           string `json:"tid"`
 	DateTime      string `json:"date_time"`
 	StatusSignal  string `json:"status_signal"`
 	StatusStorage string `json:"status_storage"`

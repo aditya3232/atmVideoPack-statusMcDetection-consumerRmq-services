@@ -65,7 +65,7 @@ func (r *repository) ConsumerQueueStatusMcDetection() (RmqConsumerStatusMcDetect
 		resultElastic, err := repoElastic.CreateElasticStatusMcDetection(
 			add_status_mc_detection_to_elastic.ElasticStatusMcDetection{
 				ID:            helper.DateTimeToStringWithStrip(time.Now()),
-				TidID:         newStatusMcDetection.TidID,
+				Tid:           newStatusMcDetection.Tid,
 				DateTime:      newStatusMcDetection.DateTime,
 				StatusSignal:  newStatusMcDetection.StatusSignal,
 				StatusStorage: newStatusMcDetection.StatusStorage,

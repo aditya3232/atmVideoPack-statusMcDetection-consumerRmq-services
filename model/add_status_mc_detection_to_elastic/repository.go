@@ -1,7 +1,6 @@
 package add_status_mc_detection_to_elastic
 
 import (
-	"strconv"
 	"strings"
 
 	esv7 "github.com/elastic/go-elasticsearch/v7"
@@ -29,7 +28,7 @@ func (r *repository) CreateElasticStatusMcDetection(elasticStatusMcDetection Ela
 	// Misalnya, jika Anda ingin menyimpan data deteksi manusia yang diberikan sebagai JSON:
 	body := []byte(`{
 		"id": "` + elasticStatusMcDetection.ID + `",
-		"tid_id": "` + strconv.Itoa(*elasticStatusMcDetection.TidID) + `",
+		"tid": "` + elasticStatusMcDetection.Tid + `",
 		"date_time": "` + elasticStatusMcDetection.DateTime + `",
 		"status_signal": "` + elasticStatusMcDetection.StatusSignal + `",
 		"status_storage": "` + elasticStatusMcDetection.StatusStorage + `",
